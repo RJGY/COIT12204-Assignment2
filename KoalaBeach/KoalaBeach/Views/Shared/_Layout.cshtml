@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - KoalaBeach</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="/lib/font-awesome/css/all.min.css" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">KoalaBeach</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Admin</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Login">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Cart">Cart</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="/images/logo.png" alt="">
+                </a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link 
+                               @if(ViewBag.Type=="Men"){
+                                   @: text-warning 
+                               }"
+                               asp-area="" asp-controller="Home" asp-action="Catalog" asp-route-type="Men"> Men </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link@(ViewBag.Type=="Women" ? " text-warning" : "")" 
+                               asp-area="" asp-controller="Home" asp-action="Catalog" asp-route-type="Women"> Women </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class= "nav-link@(ViewBag.Type=="Sale" ? " text-warning" : "")" 
+                               asp-area="" asp-controller="Home" asp-action="Catalog" asp-route-type="Sale"> Sale </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer" id="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <img src="/images/logo_text.png" alt="">
+                    </div>
+                    <div class="col-lg-3 col-sm-2 col-xs-3">
+                        <ul>
+                            <li><h5><a asp-action="Index"> Home </a></h5></li>
+                            <li><h5><a asp-action="Catalog" asp-route-type="Men"> Men </a></h5></li>
+                            <li><h5><a asp-action="Catalog" asp-route-type="Women"> Women </a></h5></li>
+                            <li><h5><a asp-action="Contact"> Contact </a></h5></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-sm-2 col-xs-3">
+                        <img src="/images/facebook.png" alt="">
+                        &nbsp;&nbsp;
+                        <img src="/images/twitter.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="container">
+                    <span class="pull-left copyright"> Copyright © 2020 KoalaBeach </span>
+                    <span class="float-right"> Last Updated 29/9/2020 </span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+   <!-- <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2020 - KoalaBeach - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>-->
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

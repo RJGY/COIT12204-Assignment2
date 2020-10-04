@@ -1,0 +1,74 @@
+﻿@{
+    ViewData["Title"] = "Catalog";
+}
+@model IEnumerable<Product>
+
+<div class="container-fluid">
+    <div class="row flex-column flex-md-row">
+
+        <div id="categories" class="col-3">
+            <vc:navigation-menu />
+        </div>
+
+        <div class="col-9">
+            @{
+                int col = 0;
+
+                foreach (Product p in Model)
+                {
+                    string image;
+                    string altText;
+                    if (p.Image == null || p.Image == "")
+                    {
+                        image = "/images/cap.png";
+                        altText = "Default picture";
+                    }
+                    else
+                    {
+                        image = "/images/" + p.Image;
+                        altText = p.Image.Split(".")[0];
+                    }
+                    if (col == 0)
+                    {
+                        @:<div class="row">
+                    }
+
+                    <div class="col-3">
+                        <div class="card bg-white">
+                            <img class="card-img-top" src="@image"  alt="@altText">
+                            <div class="card-body text-center">
+                                <p class="card-title">@p.Name</p>
+                                <p class="card-text">@p.Description</p>
+                                <p class="card-text">$@p.Price</p>
+
+                                <form id="@p.ProductID" asp-page="/Cart" method="post">
+                                    <input type="hidden" name="ProductID" value="@p.ProductID" />
+                                    <input type="hidden" name="returnUrl"
+                                           value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+                                    <span class="card-text">
+                                        <button type="submit"
+                                                class="btn btn-success btn-sm">
+                                            Add To Cart
+                                        </button>
+                                    </span>
+                                </form>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    if (col == 3 || col == Model.Count() - 1)
+                    {
+                        @:</div><br />
+                    }
+
+                    col = ++col % 4;
+                }
+            }
+
+
+        </div>
+
+    </div>
+</div>

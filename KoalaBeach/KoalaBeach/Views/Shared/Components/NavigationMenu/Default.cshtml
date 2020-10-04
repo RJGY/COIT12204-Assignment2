@@ -1,0 +1,16 @@
+﻿@model IEnumerable<string>
+
+@foreach (string category in Model)
+{
+    <a class="btn btn-block
+
+       @(category == ViewBag.SelectedCategory
+           ? "btn-primary": "btn-outline-secondary")"
+       asp-action="Catalog" asp-controller="Home"
+       asp-route-type="@ViewBag.Type"
+       asp-route-category="@category">
+
+       @category
+
+    </a>
+}

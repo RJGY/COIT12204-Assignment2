@@ -1,0 +1,24 @@
+﻿@{
+    Layout = "_LoginLayout";
+    ViewData["Title"] = "User Login";
+}
+
+<div class="container mt-5 mb-5">
+    <h1> Login </h1>
+    <form asp-controller="Home" asp-action="RegistrationForm" method="post">
+        <div asp-validation-summary="All"></div>
+        <p>
+            <label>Email</label><br />
+            <input />
+        </p>
+        <p>
+            <label>Password</label><br />
+            <input />
+        </p>
+        <br />
+        <button type="submit">Login</button>&nbsp;&nbsp;
+        <a asp-action="Register">Register</a>
+    </form>
+</div>
+
+
